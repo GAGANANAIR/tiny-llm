@@ -1,13 +1,4 @@
-"""
-Load the trained TinyGPT model and generate text from it. Run this after
-train.py has produced tinygpt.pt.
 
-Usage:
-    python3 sample.py                      # generate from empty context
-    python3 sample.py --prompt "ROMEO:"    # generate continuing a prompt
-    python3 sample.py --tokens 800         # generate more/less text
-    python3 sample.py --temperature 0.7    # lower = safer/more repetitive, higher = wilder
-"""
 
 import argparse
 import torch
