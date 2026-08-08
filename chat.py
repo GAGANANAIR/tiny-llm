@@ -1,17 +1,3 @@
-"""
-Simple interactive REPL for talking to your trained TinyGPT model.
-
-Note on what this actually is: TinyGPT is trained purely to predict the
-next character given the previous ones (this is called "next-token
-prediction", the same core task real LLMs are trained on) — it has NOT
-been fine-tuned to follow instructions or hold a conversation the way
-ChatGPT has. So typing a question won't get you a helpful answer; it'll
-get you a Shakespeare-flavored continuation of whatever you typed. This
-script is here so you can feel that difference for yourself.
-
-Usage:
-    python3 chat.py
-"""
 
 import torch
 from sample import load_model, encode, decode
