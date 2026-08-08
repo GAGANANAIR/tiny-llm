@@ -1,18 +1,9 @@
-"""
-Train TinyGPT from scratch on data/input.txt. Everything here is real
-training: real gradient descent, real backpropagation, real loss going
-down — just at a small enough scale to finish on a CPU in a few minutes
-instead of needing a datacenter.
-"""
 
 import torch
 import time
 from model import TinyGPT
 
-# ---------------------------------------------------------------------
-# Hyperparameters — small enough to train on CPU in a reasonable time
-# ---------------------------------------------------------------------
-BLOCK_SIZE = 96        # how many characters of context the model sees
+BLOCK_SIZE = 96        
 BATCH_SIZE = 48
 N_EMBD = 96
 N_HEAD = 4
@@ -25,10 +16,8 @@ EVAL_ITERS = 30
 
 torch.manual_seed(1337)
 
-# ---------------------------------------------------------------------
-# Data loading + tokenization (character-level: each unique character
-# in the corpus becomes one token)
-# ---------------------------------------------------------------------
+
+
 with open('data/input.txt', 'r', encoding='utf-8') as f:
     text = f.read()
 
@@ -69,9 +58,6 @@ def estimate_loss(model):
     model.train()
     return out
 
-# ---------------------------------------------------------------------
-# Train
-# ---------------------------------------------------------------------
 if __name__ == '__main__':
     print(f'Vocab size: {vocab_size} unique characters')
     print(f'Training data: {len(train_data):,} chars | Validation: {len(val_data):,} chars')
@@ -97,8 +83,7 @@ if __name__ == '__main__':
             elapsed = time.time() - start
             print(f"step {iter}: train loss {losses['train']:.4f}, val loss {losses['val']:.4f} ({elapsed:.0f}s elapsed)")
 
-            # Save a checkpoint every eval, so an interrupted run still
-            # leaves behind a usable (if less-trained) model file.
+           
             torch.save({
                 'model_state': model.state_dict(),
                 'vocab_size': vocab_size,
@@ -122,7 +107,7 @@ if __name__ == '__main__':
     print(f'\nTraining complete in {time.time() - start:.0f}s')
     print('Final checkpoint already saved to tinygpt.pt')
 
-    # Generate a sample to prove it actually learned something
+
     print('\n--- Sample generation ---')
     context = torch.zeros((1, 1), dtype=torch.long)
     generated = model.generate(context, max_new_tokens=400)
