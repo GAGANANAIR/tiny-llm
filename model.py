@@ -1,12 +1,4 @@
-"""
-A minimal GPT-style character-level language model, built from scratch
-with plain PyTorch — no pretrained weights, no external model library.
-Architecture: token+position embeddings -> stacked transformer blocks
-(multi-head self-attention + feedforward) -> final linear head over the
-vocabulary. This is the same fundamental design real LLMs use, just at
-a tiny scale that can train on a CPU in a few minutes instead of a
-datacenter for weeks.
-"""
+
 
 import torch
 import torch.nn as nn
